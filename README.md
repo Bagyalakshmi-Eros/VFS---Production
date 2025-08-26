@@ -1,76 +1,79 @@
-<div align="center">
-
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
-  <h1>Video Face Swap (VFS)</h1>
-  
-  <p>
-    Swap any face in a video with a few clicks!!
-  </p>
-  
+# VFS 
 
 
-<!-- Run Locally -->
-### :running: Run Locally
+## Prerequisites
 
-Clone the project
+- Python 3.11
+- Git
+
+## Installation & Setup
+
+### 1. Clone the Repository
 
 ```bash
-  git clone https://github.com/ramkumar-mv/Video-Face-Swap.git
+git clone https://github.com/Immerso-AIIP-Ltd/Vfs-Proxy.git
+cd Vfs-Proxy
 ```
 
-Go to the project directory
+### 2. Create Virtual Environment
 
 ```bash
-  cd Video-Face-Swap
+python3.11 -m venv venv
+
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
 ```
 
-Install dependencies
+### 3. Navigate to Backend Directory
 
 ```bash
-  cd Video-Face-Swap/frontend
-  npm install
-
-  cd Video-Face-Swap/backend
-  pip install -r requirements.txt
+cd backend
 ```
 
-Run Backend and Frontend
+### 4. Install Requirements
 
 ```bash
-  cd Video-Face-Swap/frontend
-  npm start
-
-  cd Video-Face-Swap/backend
-  python3 main.py
-```
-Model Weights
-
-```
-Download model weight files from release and place them in weights/ folder.
+pip install -r requirements.txt
 ```
 
+### 5. Install PyTorch (CUDA Support)
 
-<!-- Usage -->
-## :eyes: Usage
+```bash
+pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
+```
 
-Project is in two part frontend (ReactJS) and backend (Python, FastAPI). 
-To run it locally you need to run both. 
+### 6. Download Required Assets
 
+From the [Releases](https://github.com/Immerso-AIIP-Ltd/Vfs-Proxy/releases) section, download the following folders:
 
+- **weights** - Place this folder inside the `face-swap` directory
+- **uploaded-videos** - Place this folder in the root directory of the project
 
-<!-- License -->
-## :warning: License
+**Directory Structure After Setup:**
+```
+Vfs-Proxy/
+├── backend/
+│   └── requirements.txt
+├── face-swap/
+│   └── weights/          # Downloaded from releases     
+└── main.py
+```
 
-Distributed under Apache2.0. See LICENSE for more information.
+## Running the Application
 
+After completing all the setup steps above, run the application using uvicorn:
 
+```bash
+uvicorn main:app --reload
+```
 
+The application will be available at `http://localhost:8000`
 
+## Notes
 
-<!-- Acknowledgments -->
-## :gem: Acknowledgements
-
-
- - [InsightFace](https://github.com/deepinsight/insightface)
- - [FaceFusion](https://github.com/facefusion/facefusion)
- - [Readme Template](https://github.com/Louis3797/awesome-readme-template)
+- Ensure you have CUDA-compatible GPU for optimal performance
+- Make sure all dependencies are installed before running the application
+- The virtual environment should remain activated while running the application
